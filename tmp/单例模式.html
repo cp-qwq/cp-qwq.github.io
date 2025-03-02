@@ -1,0 +1,221 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Cp-qwq Blog | Cp-qwq Blog</title><meta name="author" content="cp-qwq"><meta name="copyright" content="cp-qwq"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="概念单例模式（Singleton Pattern）是一种创建型设计模式，旨在确保一个类在整个应用程序生命周期中仅且只有一个实例，并提供一个全局访问点以获取该实例。 设计单例模式的主要原因和作用包括以下几个方面：  单例模式确保一个类只有一个实例，防止在程序中创建多个实例可能导致的资源浪费或状态不一致问题。例如，数据库连接池、配置管理类等通常使用单例模式，以确保全局只有一个连接池或配置实例。 单例模">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cp-qwq Blog">
+<meta property="og:url" content="http://cp-qwq.github.io/tmp/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.html">
+<meta property="og:site_name" content="Cp-qwq Blog">
+<meta property="og:description" content="概念单例模式（Singleton Pattern）是一种创建型设计模式，旨在确保一个类在整个应用程序生命周期中仅且只有一个实例，并提供一个全局访问点以获取该实例。 设计单例模式的主要原因和作用包括以下几个方面：  单例模式确保一个类只有一个实例，防止在程序中创建多个实例可能导致的资源浪费或状态不一致问题。例如，数据库连接池、配置管理类等通常使用单例模式，以确保全局只有一个连接池或配置实例。 单例模">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://cp-qwq.github.io/image/avatar.jpg">
+<meta property="article:published_time" content="2025-03-02T10:13:14.876Z">
+<meta property="article:modified_time" content="2025-03-02T10:13:14.876Z">
+<meta property="article:author" content="cp-qwq">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://cp-qwq.github.io/image/avatar.jpg"><link rel="shortcut icon" href="/image/avatar.jpg"><link rel="canonical" href="http://cp-qwq.github.io/tmp/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Cp-qwq Blog',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'page'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background: linear-gradient(20deg, #0062be, #925696, #cc426e, #fb0347);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Cp-qwq Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title"></h1></div></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container"><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>单例模式（Singleton Pattern）是一种创建型设计模式，旨在确保一个类在整个应用程序生命周期中仅且只有一个实例，并提供一个全局访问点以获取该实例。</p>
+<p>设计单例模式的主要原因和作用包括以下几个方面：</p>
+<ol>
+<li>单例模式确保一个类只有一个实例，防止在程序中创建多个实例可能导致的资源浪费或状态不一致问题。例如，数据库连接池、配置管理类等通常使用单例模式，以确保全局只有一个连接池或配置实例。</li>
+<li>单例模式通过提供一个全局访问点，使得在程序的任何地方都可以方便地访问该实例。这对于那些需要在多个模块或组件之间共享的资源或服务尤为重要，如日志记录器、缓存管理器等。</li>
+<li>单例模式通常采用懒加载的方式，即在第一次需要使用实例时才创建。这有助于节省系统资源，特别是在实例创建成本较高或初期并不需要该实例的情况下。</li>
+<li>通过将单例实例作为一个类的静态成员，可以避免在全局命名空间中引入多个实例，减少命名冲突的风险。</li>
+<li>在多线程环境下，单例模式可以有效管理共享资源，确保线程安全。例如，操作系统中的线程池、任务管理器等常使用单例模式，以协调多个线程对资源的访问。</li>
+</ol>
+<h3 id="设计单例模式的考虑因素"><a href="#设计单例模式的考虑因素" class="headerlink" title="设计单例模式的考虑因素"></a>设计单例模式的考虑因素</h3><p>虽然单例模式有诸多优点，但在设计和使用时也需要注意以下几点：</p>
+<ul>
+<li><p><strong>线程安全</strong>：在多线程环境下，需要确保单例实例的创建和访问是线程安全的，常用的方法有双重检查锁定（Double-Checked Locking）和使用静态内部类等。</p>
+</li>
+<li><p><strong>延迟初始化</strong>：根据需求选择是否采用延迟初始化，以平衡性能和资源利用。</p>
+</li>
+<li><p><strong>可测试性</strong>：单例模式可能会影响代码的可测试性，特别是在单元测试中，可能需要通过依赖注入等手段来替代单例实例。</p>
+</li>
+<li><p><strong>限制扩展</strong>：单例模式通过限制实例数量可能会限制类的扩展性，需谨慎使用。</p>
+</li>
+</ul>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><ul>
+<li><p>需要确保全局只有一个实例的场景，如配置管理、日志系统、设备驱动等。</p>
+</li>
+<li><p>需要全局访问点来协调系统中的多个部分，如缓存、线程池等。</p>
+</li>
+</ul>
+<h3 id="不适用场景"><a href="#不适用场景" class="headerlink" title="不适用场景"></a>不适用场景</h3><ul>
+<li><p>需要多个实例以满足不同需求的场景。</p>
+</li>
+<li><p>对象的生命周期需要更灵活控制的场合。</p>
+</li>
+</ul>
+<p>总的来说，单例模式通过控制类的实例数量和提供全局访问点，为系统资源管理和状态一致性提供了有效的解决方案。然而，在实际应用中，应根据具体需求和上下文环境，谨慎决定是否使用单例模式，以避免潜在的设计问题。</p>
+<h2 id="懒汉单例（线程不安全）"><a href="#懒汉单例（线程不安全）" class="headerlink" title="懒汉单例（线程不安全）"></a>懒汉单例（线程不安全）</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Singleton1</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">static</span> Singleton1* <span class="title">get</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(instance==<span class="literal">nullptr</span>)&#123;</span><br><span class="line">            instance = <span class="keyword">new</span> <span class="built_in">Singleton1</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance; </span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">static</span> Singleton1* instance;</span><br><span class="line">    <span class="built_in">Singleton1</span>()&#123;</span><br><span class="line">        </span><br><span class="line">    &#125; </span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//进行初始化</span></span><br><span class="line">Singleton1* Singleton1::instance = <span class="literal">nullptr</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="懒汉单例（线程安全）"><a href="#懒汉单例（线程安全）" class="headerlink" title="懒汉单例（线程安全）"></a>懒汉单例（线程安全）</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//懒汉式（线程安全）</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Singleton2</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">static</span> Singleton2* <span class="title">get</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="function">std::unique_lock&lt;std::mutex&gt; <span class="title">lock</span><span class="params">(mtx)</span></span>;</span><br><span class="line">        <span class="keyword">if</span>(instance==<span class="literal">nullptr</span>)&#123;</span><br><span class="line">            instance = <span class="keyword">new</span> <span class="built_in">Singleton2</span>();<span class="comment">//确保只被实例化一次</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">static</span> Singleton2* instance;<span class="comment">//表示该类拥有的唯一的实例，此处只是声明</span></span><br><span class="line">    <span class="type">static</span> std::mutex mtx;<span class="comment">//声明一个锁,如果每个线程使用一个锁，也不会起到线程安全的作用，因此要使用static</span></span><br><span class="line">    <span class="built_in">Singleton2</span>()&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Singleton2* Singleton2::instance = <span class="literal">nullptr</span>;<span class="comment">//类外初始化为nullptr</span></span><br><span class="line">std::mutex Singleton2::mtx;<span class="comment">//类外初始化，std::mutex的默认构造函数会提供mtx的初始化</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="饿汉单例"><a href="#饿汉单例" class="headerlink" title="饿汉单例"></a>饿汉单例</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Singleton</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="type">static</span> Singleton instance;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="built_in">Singleton</span>();</span><br><span class="line">	~<span class="built_in">Singleton</span>();</span><br><span class="line">	<span class="built_in">Singleton</span>(<span class="type">const</span> Singleton&amp;);</span><br><span class="line">	Singleton&amp; <span class="keyword">operator</span>=(<span class="type">const</span> Singleton&amp;);</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="type">static</span> Singleton&amp; <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> instance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// initialize defaultly</span></span><br><span class="line">Singleton Singleton::instance;</span><br></pre></td></tr></table></figure>
+
+<h2 id="双重锁检查的懒汉式单例"><a href="#双重锁检查的懒汉式单例" class="headerlink" title="双重锁检查的懒汉式单例"></a>双重锁检查的懒汉式单例</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Singleton4</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">static</span> Singleton4* <span class="title">get</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(instance==<span class="literal">nullptr</span>)&#123;</span><br><span class="line">            <span class="function">std::unique_lock&lt;std::mutex&gt; <span class="title">lock</span><span class="params">(mtx)</span></span>;</span><br><span class="line">            <span class="keyword">if</span>(instance==<span class="literal">nullptr</span>)&#123;</span><br><span class="line">                instance = <span class="keyword">new</span> <span class="built_in">Singleton4</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">static</span> Singleton4* instance;</span><br><span class="line">    <span class="type">static</span> std::mutex mtx;</span><br><span class="line">    <span class="built_in">Singleton4</span>()&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">Singleton4* Singleton4::instance = <span class="literal">nullptr</span>;</span><br><span class="line">std::mutex Singleton4::mtx;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="C-11的局部静态变量写法（推荐）"><a href="#C-11的局部静态变量写法（推荐）" class="headerlink" title="C++11的局部静态变量写法（推荐）"></a>C++11的局部静态变量写法（推荐）</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Singleton</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="built_in">Singleton</span>() &#123; &#125;;</span><br><span class="line">	~<span class="built_in">Singleton</span>() &#123; &#125;;</span><br><span class="line">	<span class="built_in">Singleton</span>(<span class="type">const</span> Singleton&amp;);</span><br><span class="line">	Singleton&amp; <span class="keyword">operator</span>=(<span class="type">const</span> Singleton&amp;);</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="type">static</span> Singleton&amp; <span class="title">getInstance</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">		<span class="type">static</span> Singleton instance;</span><br><span class="line">		<span class="keyword">return</span> instance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+</div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">cp-qwq</div><div class="author-info-description">go & C++</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/cp-qwq" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/02/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" title="单例模式">单例模式</a><time datetime="2025-03-02T10:55:49.000Z" title="发表于 2025-03-02 18:55:49">2025-03-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/26/map%E5%AD%A6%E4%B9%A0/" title="map学习">map学习</a><time datetime="2025-02-26T09:52:58.000Z" title="发表于 2025-02-26 17:52:58">2025-02-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/23/bitcask%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" title="bitcask存储引擎">bitcask存储引擎</a><time datetime="2025-02-23T15:53:29.000Z" title="发表于 2025-02-23 23:53:29">2025-02-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/13/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%AD%A6%E4%B9%A0/" title="负载均衡学习">负载均衡学习</a><time datetime="2025-02-13T11:08:39.000Z" title="发表于 2025-02-13 19:08:39">2025-02-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/13/git%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" title="git学习记录">git学习记录</a><time datetime="2025-02-13T10:59:11.000Z" title="发表于 2025-02-13 18:59:11">2025-02-13</time></div></div></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/03/">
+            <span class="card-archive-list-date">
+              三月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/02/">
+            <span class="card-archive-list-date">
+              二月 2025
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">5</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-03-02T11:09:19.928Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background: linear-gradient(20deg, #0062be, #925696, #cc426e, #fb0347);"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By cp-qwq</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
